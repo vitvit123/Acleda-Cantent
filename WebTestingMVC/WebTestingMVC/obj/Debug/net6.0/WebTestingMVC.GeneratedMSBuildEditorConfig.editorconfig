@@ -9,41 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebTestingMVC
 build_property.RootNamespace = WebTestingMVC
-build_property.ProjectDir = C:\Software Internship\Backend\ASP.NET\ASP.NET(MVC)\Train\WebTestingMVC\WebTestingMVC\
+build_property.ProjectDir = C:\Software Internship\Backend\ASP.NET\ASP.NET(MVC)\Train\Acleda-Cantent\WebTestingMVC\WebTestingMVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Software Internship\Backend\ASP.NET\ASP.NET(MVC)\Train\WebTestingMVC\WebTestingMVC
+build_property.MSBuildProjectDirectory = C:\Software Internship\Backend\ASP.NET\ASP.NET(MVC)\Train\Acleda-Cantent\WebTestingMVC\WebTestingMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/Home/Index.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/Home/Privacy.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/Shared/Error.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/Testing/webtesting.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/Testing/webtesting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdGluZ1x3ZWJ0ZXN0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/_ViewImports.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/_ViewStart.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/WebTestingMVC/WebTestingMVC/Views/Shared/_Layout.cshtml]
+[C:/Software Internship/Backend/ASP.NET/ASP.NET(MVC)/Train/Acleda-Cantent/WebTestingMVC/WebTestingMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-w4mr2cu2zo

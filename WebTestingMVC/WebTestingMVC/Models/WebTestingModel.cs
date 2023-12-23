@@ -37,6 +37,8 @@
         public string phone { get; set; }
         public string paymentMethod { get; set; }
         public string OrderID { get; set; }
+        public string ViewIDADMIN { get; set; }
+        public string IDBANKHERH { get; set; }
     }
 }
 

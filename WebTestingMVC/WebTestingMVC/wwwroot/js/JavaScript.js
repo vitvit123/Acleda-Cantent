@@ -5,15 +5,9 @@ $.ajax({
     url: "https://localhost:7116/Testing/webtesting",
     method: "GET",
     success: function (response) {
-        // Process the response data
-
-        // Hide the loading indicator
         $("#loadingIndicator").hide();
     },
     error: function (error) {
-        // Handle error
-
-        // Hide the loading indicator
         $("#loadingIndicator").hide();
     }
 });
@@ -21,8 +15,8 @@ var Login = new function () {
     var mThis = this;
     this.self = $("#Login");
     this.serviceName =
-        /*LoginWebPage*/
-        this.LoginBtn = $("#BtnCheckIn");
+    /*LoginWebPage*/
+    this.LoginBtn = $("#BtnCheckIn");
     this.RegisterLink = $("#RegisterLink");
     this.IndexPage = $(".LoginPage");
     this.inputEmail = $("#inputEmail");
@@ -84,9 +78,24 @@ var Login = new function () {
     this.OrderButton = $("#OrderButton");
     this.OrderHistory = $("#myTable");
     this.tablehistoryorder = $(".bootstrap5");
-
-
-
+    this.GuestOrder = $("#GuestOrder");
+    this.AdminLogout = $("#AdminLogout");
+    this.MAINAdminDashboard = $("#AdminSide");
+    this.adminname = $(".admin-name");
+    this.TotalOrderBox = $("#TotalOrderBox");
+    this.TotalPriceBox = $("#TotalPriceBox");
+    this.TotalUSER = $("#TotalUSER");
+    this.TotalADMIN = $("#TotalADMIN");
+    this.contentdashboard = $("#contentdashboard");
+    this.leftbarDashboard = $("#leftbarDashboard");
+    this.leftbarProduct = $("#leftbarProduct");
+    this.TableAdmin = $(".TableAdmin");
+    this.updateProduct = $("#updateProduct");
+    this.OrderBoardAdmin = $("#OrderBoardAdmin");
+    this.OrderAdminBoardContainer = $(".OrderAdminBoardContainer");
+    this.DialogInformationOrder = $(".DialogInformationOrder");
+    this.BtnLeaveDialog = $("#BtnLeaveDialog");
+    this.BtnBanKherh = $("#BtnBanKherh");
     this.Cleartify = function () {
         // Code executed when PricingTab is clicked
         mThis.IndexPage.hide();
@@ -103,6 +112,15 @@ var Login = new function () {
         mThis.Profile.hide();
         mThis.PaymentContainer.hide();
         $(".bootstrap5").css("display", "none");
+        mThis.MAINAdminDashboard.hide();
+    }
+
+    this.CleartifyAdmin = function () {
+        mThis.contentdashboard.hide();
+        mThis.admindashboard.hide();
+        mThis.PricingContainer.hide();
+        mThis.OrderAdminBoardContainer.hide();
+        mThis.DialogInformationOrder.hide();
     }
 
     var spenum = function () {
@@ -118,8 +136,98 @@ var Login = new function () {
             }
         });
     };
+    var AdminTable = function () {
+        var obj = {};
+        obj.userid = $("#userid").text();
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/HistoryTableAdmin',
+            data: obj,
+            dataType: "json",
+            success: function (response) {
+                for (var i = 0; i < response.length; i++) {
+                    var id = response[i].id;
+                    var namefood = response[i].namefood;
+                    var Quantity = response[i].Quantity;
+                    var TotalPrice = response[i].TotalPrice;
+                    var OrderDate = response[i].OrderDate;
 
+                    var tr = $('<tr>').addClass('TrADMIN');
 
+                    var idCell = $('<td>').addClass('TdADMIN').text(id);
+                    var namefoodCell = $('<td>').addClass('TdADMIN').text(namefood);
+                    var QuantityCell = $('<td>').addClass('TdADMIN').text(Quantity);
+                    var TotalPriceCell = $('<td>').addClass('TdADMIN').text(TotalPrice);
+                    var OrderDateCell = $('<td>').addClass('TdADMIN').text(OrderDate);
+
+                    tr.append(idCell, namefoodCell, QuantityCell, TotalPriceCell, OrderDateCell);
+
+                    $(".TableAdmin tbody").append(tr);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+    var TotalOrder = function () {
+        var obj = {};
+        obj.userid = $("#userid").text();
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/TotalOrder',
+            data: obj,
+            dataType: "json",
+            success: function (response) {
+                mThis.TotalOrderBox.text(response);
+            }
+        });
+    };
+
+    var TotalPrice = function () {
+        var obj = {};
+        obj.userid = $("#userid").text();
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/TotalPrice',
+            data: obj,
+            dataType: "json",
+            success: function (response) {
+
+                mThis.TotalPriceBox.text("$"+response);
+            }
+        });
+    };
+
+    var TotalUser = function () {
+        var obj = {};
+        obj.userid = $("#userid").text();
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/TotalUSER',
+            data: obj,
+            dataType: "json",
+            success: function (response) {
+                mThis.TotalUSER.text(response);
+            }
+        });
+    };
+
+    var TotalADMIN = function () {
+        var obj = {};
+        obj.userid = $("#userid").text();
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/TotalADMIN',
+            data: obj,
+            dataType: "json",
+            success: function (response) {
+                mThis.TotalADMIN.text(response);
+            }
+        });
+    };
+
+ 
     //LoginAction
     this.LoginBtn.off("click").on("click", function () {
         mThis.Cleartify();
@@ -154,17 +262,27 @@ var Login = new function () {
                     mThis.inputEmail.val("");
                     mThis.inputPassword.val("");
                     mThis.UsernameBar.text(response.fullName);
+                    mThis.adminname.text(response.fullName);
                     mThis.userid.text(response.id);
                     mThis.userposition.text(response.position);
                     mThis.HomeTab.trigger("click");
                     spenum();
 
-                    if (mThis.userposition.text() == "Admin") {
-                        mThis.AddItem.show();
-                    }
-                    else {
-                        mThis.AddItem.hide();
-                    }
+                        if (mThis.userposition.text() == "Admin") {
+                            mThis.Cleartify();
+                            mThis.footer.hide();
+                            $("#maincontent").hide();
+                            mThis.MAINAdminDashboard.show();
+                            mThis.OrderAdminBoardContainer.hide();
+                            TotalOrder();
+                            TotalPrice();
+                            AdminTable();
+                            TotalUser();
+                            TotalADMIN();
+                        }
+                        else {
+                            mThis.MAINAdminDashboard.hide();
+                        }
                 }
             },
             error: function (xhr, status, error) {
@@ -174,7 +292,7 @@ var Login = new function () {
     });
 
 
-    // Call spenum whenever needed
+
 
     this.backmenu.on("click", function () {
         mThis.PricingTab.trigger("click");
@@ -231,6 +349,10 @@ var Login = new function () {
         mThis.IndexPage.show();
 
     });
+    // Call spenum whenever needed
+    this.AdminLogout.on("click", function () {
+        mThis.btnbackLogin.trigger("click");
+    })
     this.Logoutfunction.off("click").on("click", function () {
         mThis.btnbackLogin.trigger("click");
         $("#maincontent").css("display", "none");
@@ -655,4 +777,212 @@ var Login = new function () {
         var obj = {};
         obj.Reciept = $(this).attr('OrderReceiptId');
     });
+    mThis.GuestOrder.on("click", function () {
+        
+    })
+
+    mThis.leftbarDashboard.on("click", function () {
+        mThis.CleartifyAdmin();
+        mThis.contentdashboard.show();
+    })
+    $("#addProduct").on("click", function () {
+        mThis.CleartifyAdmin();
+        $(".admindashboardclass").show();
+    })
+    mThis.updateProduct.on("click", function () {
+        mThis.CleartifyAdmin();
+        mThis.PricingContainer.show();
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/Menu',
+            datatype: "JSON",
+            success: function (data) {
+                if (data == "0") {
+                    // Handle case when data is 0
+                }
+                else {
+                    $(".food-column").html("");
+                    for (var i = 0; i < data.length; i++) {
+                        // Process received data and update UI
+                        var foodName = data[i].namefood;
+                        var foodPrice = data[i].price;
+                        var foodImage = data[i].foodimage;
+
+                        var ID = data[i].id;
+
+                        // Create HTML elements to display food details
+                        var foodItem = $('<div>').addClass('food-card');
+                        var image = $('<img>').attr('src', '/image/menufood-copy/' + foodImage).addClass('food-image');
+                        var foodDetails = $('<div>').addClass('food-details').html('<h4>' + foodName + '</h4><p>Price: ' + foodPrice + '$</p>');
+                        var addToCartButton = $('<button>').addClass('btn btn-primary add-to-cart').text('Add to Cart');
+                        addToCartButton.attr('data-id', ID);
+
+                        var deleteButton = $('<button>').addClass('btn btn-danger deletecardfood').text('Delete');
+                        deleteButton.attr('datadeletecard', ID);
+
+                        var updateButton = $('<button>').addClass('btn btn-primary updatecardfood').text('Update');
+                        updateButton.attr('dataupdatecard', ID);
+
+                        // Append elements to the DOM
+                        foodItem.append(image, foodDetails, addToCartButton, deleteButton, updateButton);
+                        $('#food-items').append(foodItem);
+
+
+                        $(".deletecardfood").on("click", function () {
+                            obj = {};
+                            obj.IDDeleteCart = $(this).attr('datadeletecard');
+                            $.ajax({
+                                type: 'POST',
+                                url: '../../Testing/DeleteFoodCard',
+                                data: obj,
+                                datatype: "JSON",
+                                success: function (data) {
+                                    if (data == "1") {
+
+                                    }
+                                }
+                            });
+                        })
+                        $(".updatecardfood").off("click").on("click", function () {
+                            mThis.admindashboard.show();
+                            mThis.PricingContainer.hide();
+                            obj = {};
+                            obj.IDUpdateCart = $(this).attr('dataupdatecard');
+                            $.ajax({
+                                type: 'POST',
+                                url: '../../Testing/UpdateFoodCard',
+                                data: obj,
+                                datatype: "JSON",
+                                success: function (data) {
+                                    if (data == "0") {
+                                        // Handle case when data is 0
+                                    } else {
+                                        mThis.Updatefooditem.css("display", "block");
+                                        mThis.foodname.val(data.namefood);
+                                        mThis.foodprice.val(data.price);
+                                        mThis.idhide.text(data.id);
+                                        $("#food-image").val(data.foodimage);
+
+                                    }
+                                }
+                            });
+                        })
+                    }
+                   
+
+                }
+            }
+        })
+
+    })
+
+
+    var $tableADMIN = $('#myTableADMIN')
+    function populateOrderTable(data) {
+        $tableADMIN.bootstrapTable("destroy").bootstrapTable({
+            height: 550,
+            locale: $("#locale").val(),
+            data: data,
+            columns: [
+                {
+                    field: "OrderID",
+                    title: "ID",
+                    align: "center",
+                },
+                
+                {
+                    field: "FullName",
+                    title: "UserName",
+                    align: "center",
+                },
+                {
+                    field: "namefood",
+                    title: "Food Name",
+                    align: "center",
+                },
+                {
+                    field: "OrderID",
+                    title: "Receipt",
+                    align: "center",
+                    formatter: function (value) {
+                        return '<button class="btn btn-primary btn-viewADMIN" data-order-receipt-id="' + value + '">View</button>';
+                    },
+                }
+            ],
+        });
+    }
+    $(document).on("click", ".btn-viewADMIN", function () {
+        mThis.DialogInformationOrder.show();
+        $('#AdminSide *').css({
+            'opacity': '0.9',
+            'pointer-events': 'none'
+        });
+        obj = {};
+        obj.ViewIDADMIN = $(this).attr('data-order-receipt-id');
+        mThis.BtnBanKherh.attr("ID", obj.ViewIDADMIN);
+
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/VIEWDIALOGORDER',
+            data: obj,
+            datatype: "JSON",
+            success: function (data) {
+                if (data == "0") {
+                    // Handle case when data is 0
+                }
+                else {
+
+                    mThis.Updatefooditem.css("display", "block");
+                    $("#dialogType").val(data[0].OrderType);
+                    $("#dialogSize").val(data[0].FoodSize);
+                    $("#dialogTopping").val(data[0].Toppings);
+                    $("#dialogQuantity").val(data[0].Quantity);
+                    $("#dialogAdditionalNotes").text(data[0].AdditionNote);
+                    $("#dialogPhoneNumber").val(data[0].UserNumber);
+                    $("#dialogAddress").text(data[0].Address);
+                   
+                }
+            }
+        });
+    })
+     mThis.OrderBoardAdmin.on("click", function () {
+         mThis.CleartifyAdmin();
+         mThis.OrderAdminBoardContainer.show();
+         $.ajax({
+             type: 'POST',
+             url: '../../Testing/OrderTableAdmin',
+             dataType: "json",
+             success: function (response) {
+                 populateOrderTable(response);
+             },
+             error: function (error) {
+                 console.log(error);
+             }
+         });
+
+     })
+    mThis.BtnLeaveDialog.on("click", function () {
+        $('#AdminSide *').css({
+            'opacity': '1',
+            'pointer-events': 'auto'
+        });
+        mThis.OrderBoardAdmin.trigger("click");
+
+    })
+    mThis.BtnBanKherh.on("click", function () {
+        obj = {};
+        obj.IDBANKHERH = $(this).attr('id');
+        $.ajax({
+            type: 'POST',
+            url: '../../Testing/Approve',
+            data: obj,
+            datatype: "JSON",
+            success: function (data) {
+                if (data == "1") {
+                    alertify.success("Ban Kherh");
+                    mThis.BtnLeaveDialog.trigger("click");
+                }
+            }
+        });
+    })
 }

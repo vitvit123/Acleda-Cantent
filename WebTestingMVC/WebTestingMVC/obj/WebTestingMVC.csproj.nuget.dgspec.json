@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj": {}
+    "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\Acleda-Cantent\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj": {}
   },
   "projects": {
-    "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj": {
+    "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\Acleda-Cantent\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj",
+        "projectUniqueName": "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\Acleda-Cantent\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj",
         "projectName": "WebTestingMVC",
-        "projectPath": "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj",
+        "projectPath": "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\Acleda-Cantent\\WebTestingMVC\\WebTestingMVC\\WebTestingMVC.csproj",
         "packagesPath": "C:\\Users\\vit12\\.nuget\\packages\\",
-        "outputPath": "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\WebTestingMVC\\WebTestingMVC\\obj\\",
+        "outputPath": "C:\\Software Internship\\Backend\\ASP.NET\\ASP.NET(MVC)\\Train\\Acleda-Cantent\\WebTestingMVC\\WebTestingMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -48,6 +48,10 @@
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.1.2, )"
+            },
+            "Microsoft.ReportingServices.ReportViewerControl.Winforms": {
+              "target": "Package",
+              "version": "[150.1586.0, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

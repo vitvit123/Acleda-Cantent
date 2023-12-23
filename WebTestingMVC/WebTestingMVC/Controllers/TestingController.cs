@@ -448,6 +448,166 @@ namespace WebTestingMVC.Controllers
             }
             return Ok(dataList);
         }
+        [HttpPost]
+        public IActionResult TotalOrder(WebTestingModel response)
+        {
+            string query = "select COUNT(*) as TotalOrder from OrderInformation where Finish='2'";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userid", response.userid);
+                conn.Open();
+                int specificnum = (int)cmd.ExecuteScalar();
+                return Ok(specificnum);
+            }
+        }
+        [HttpPost]
+        public IActionResult TotalPrice(WebTestingModel response)
+        {
+            string query = "SELECT SUM((CAST(A.Quantity AS float) * CAST(B.price AS float))) AS TotalPrice FROM OrderInformation A INNER JOIN MenuFood B on B.id=A.IdMenuFood where a.Finish='2'";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userid", response.userid);
+                conn.Open();
+                double totalPrice = (double)cmd.ExecuteScalar();
+                return Ok(totalPrice);
+            }
+        }
+        [HttpPost]
+        public IActionResult HistoryTableAdmin(WebTestingModel response)
+        {
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY a.OrderDate DESC) AS ID,b.id,a.OrderID,b.namefood, a.Quantity, CONCAT(CAST(b.price AS FLOAT) * CAST(a.Quantity AS FLOAT), '$') AS TotalPrice, a.OrderDate FROM OrderInformation a INNER JOIN MenuFood b ON b.id = a.IdMenuFood WHERE a.Finish='2' ORDER BY a.OrderDate DESC";
+            List<Dictionary<string, string>> dataList = new List<Dictionary<string, string>>();
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userid", response.userid);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var item = new Dictionary<string, string>();
+                    item["id"] = reader["ID"].ToString();
+                    item["namefood"] = reader["namefood"].ToString();
+                    item["Quantity"] = reader["Quantity"].ToString();
+                    item["TotalPrice"] = reader["TotalPrice"].ToString();
+                    item["OrderDate"] = reader["OrderDate"].ToString();
+                    item["OrderID"] = reader["OrderID"].ToString();
+
+                    dataList.Add(item);
+                }
+            }
+            return Ok(dataList);
+        }
+
+        [HttpPost]
+        public IActionResult TotalUSER(WebTestingModel response)
+        {
+            string query = "SELECT COUNT(*) FROM UserInformation";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userid", response.userid);
+                conn.Open();
+                int usernum = (int)cmd.ExecuteScalar();
+                return Ok(usernum);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult TotalADMIN(WebTestingModel response)
+        {
+            string query = "\r\nSELECT COUNT(*) FROM AdminInformation";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@userid", response.userid);
+                conn.Open();
+                int usernum = (int)cmd.ExecuteScalar();
+                return Ok(usernum);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult OrderTableAdmin()
+        {
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY a.OrderDate DESC) AS ID, FullName, b.id, a.OrderID, b.namefood, a.Quantity, CONCAT(CAST(b.price AS FLOAT) * CAST(a.Quantity AS FLOAT), '$') AS TotalPrice, a.OrderDate FROM OrderInformation a INNER JOIN MenuFood b ON b.id = a.IdMenuFood INNER JOIN UserInformation d on a.UserID = d.ID WHERE a.Finish = '1' ORDER BY a.OrderDate DESC";
+
+            List<Dictionary<string, string>> dataList = new List<Dictionary<string, string>>();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var item = new Dictionary<string, string>();
+                    item["id"] = reader["ID"].ToString();
+                    item["FullName"] = reader["FullName"].ToString();
+                    item["namefood"] = reader["namefood"].ToString();
+                    item["Quantity"] = reader["Quantity"].ToString();
+                    item["TotalPrice"] = reader["TotalPrice"].ToString();
+                    item["OrderDate"] = reader["OrderDate"].ToString();
+                    item["OrderID"] = reader["OrderID"].ToString();
+
+                    dataList.Add(item);
+                }
+            }
+
+            return Ok(dataList);
+        }
+
+
+        [HttpPost]
+        public IActionResult VIEWDIALOGORDER(WebTestingModel response)
+        {
+            string query = "SELECT OrderType, FoodSize, Toppings, Quantity, AdditionNote, UserNumber, Address, PaymentMethod FROM OrderInformation WHERE OrderID = @orderID";
+
+            List<Dictionary<string, string>> dataList = new List<Dictionary<string, string>>();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@orderID", response.ViewIDADMIN);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var item = new Dictionary<string, string>();
+                    item["OrderType"] = reader["OrderType"].ToString();
+                    item["FoodSize"] = reader["FoodSize"].ToString();
+                    item["Toppings"] = reader["Toppings"].ToString();
+                    item["Quantity"] = reader["Quantity"].ToString();
+                    item["AdditionNote"] = reader["AdditionNote"].ToString();
+                    item["UserNumber"] = reader["UserNumber"].ToString();
+                    item["Address"] = reader["Address"].ToString();
+                    item["PaymentMethod"] = reader["PaymentMethod"].ToString();
+
+                    dataList.Add(item);
+                }
+            }
+
+            return Ok(dataList);
+        }
+
+        [HttpPost]
+        public IActionResult Approve(WebTestingModel data)
+        {
+            string query = "update OrderInformation set Finish='2' where OrderID=@IDBANKHERH";
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@IDBANKHERH", data.IDBANKHERH);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return Ok('1');
+        }
 
     }
 }
